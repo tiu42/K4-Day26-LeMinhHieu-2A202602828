@@ -2,6 +2,7 @@ from typing import Any
 import asyncio
 import httpx
 import os
+import sys
 from mcp.server.fastmcp import FastMCP
 
 # Initialize FastMCP server
@@ -134,6 +135,9 @@ UV Index: {day_data['uv']}
 async def health_check() -> str:
     """Health check endpoint for deployment verification."""
     return "✅ Weather MCP Server is running! Ready to provide weather data for Australian cities and worldwide."
+
+if sys.stdout.encoding.lower() != "utf-8":
+    sys.stdout.reconfigure(encoding="utf-8")
 
 print("✅ MCP server initialized with Streamable HTTP transport")
 print("🔧 Available tools: get_current_weather, get_forecast, health_check")
